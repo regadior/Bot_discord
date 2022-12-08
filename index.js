@@ -1,22 +1,24 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const { token, prefix } = require('./config.json');
 
-const bot = new Client({ intents: [GatewayIntentBits.Guilds] });
+const bot = new Client({ intents: [
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages,
+	GatewayIntentBits.MessageContent,
+	GatewayIntentBits.GuildMembers,
+	GatewayIntentBits.DirectMessageTyping,
+] });
 
 bot.once('ready', () => {
-	console.log(`El bot esta listo ${bot.user.tag}`);
+	console.log('*********************************** ESTADO ***********************************');
+	console.log(`El bot esta listo ${bot.user.tag}\nStatus ${bot.presence.status}`);
+	console.log('******************************************************************************');
+
 });
+bot.on('messageCreate', msg =>{
+    if(msg.content === 'ping'){
+        msg.reply('pong');
+    }
+});
+bot.login(token); 
 
-bot.on("message", msg => {
-	if (msg.content === "$inspire") {
-	  getQuote().then(quote => msg.channel.send(quote))
-	}
-  
-	if (sadWords.some(word => msg.content.includes(word))) {
-	  const encouragement = encouragements[Math.floor(Math.random() * encouragements.length)]
-	  msg.reply(encouragement)
-	}
-  
-  })
-
-bot.login(token);
