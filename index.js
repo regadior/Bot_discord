@@ -16,7 +16,7 @@ bot.once('ready', () => {
 
 });
 bot.on('messageCreate', msg =>{
-    if(msg.content === 'ping'){
+    if(msg.content.startsWith(prefix+'ping')){
         msg.reply('pong');
     }
 });
