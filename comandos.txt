@@ -1,0 +1,13 @@
+Instalar nodejs en linux
+sudo apt install nodejs
+sudo apt install npm
+npm init
+Instalar discordjs en linux
+npm install discord.js
+
+Iniciar: 
+node index.js
+
+Instalar nodemon para que se reinicie al hacer un cambio
+npm i nodemon -D    -D para que se instale en esta dependencia solo
+npx nodemon index.js para que se actualize sobre index.js
